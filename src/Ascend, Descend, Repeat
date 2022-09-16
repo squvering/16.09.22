@@ -1,0 +1,55 @@
+public class AscendDescend {
+
+    public static String ascendDescend(int length, int minimum, int maximum) {
+        if(maximum < minimum || length == 0)
+            return "";
+
+        String str = "";
+
+        if(maximum == minimum) {
+            String tmp = "" + minimum;
+            for(int i=0; i < length / tmp.length(); i++) {
+                str+= minimum;
+            }
+            str+= tmp.substring(0, length % tmp.length());
+            length = 0;
+        }
+
+        int i = minimum;
+
+        while(length > 0) {
+            String tmp;
+            if (i == minimum) {
+                while (i < maximum) {
+                    tmp = "" + i;
+                    int tmp_l = tmp.length();
+                    if (tmp_l > length) {
+                        tmp_l = length;
+                        str += tmp.substring(0, tmp_l);
+                    }
+                    else
+                        str += tmp;
+                    length -= tmp_l;
+                    i++;
+                }
+            }
+            else if(i == maximum){
+                while (i > minimum) {
+                    tmp = "" + i;
+                    int tmp_l = tmp.length();
+                    if (tmp_l > length) {
+                        tmp_l = length;
+                        str += tmp.substring(0, tmp_l);
+                    }
+                    else
+                        str += tmp;
+                    length -= tmp_l;
+                    i--;
+                }
+            }
+        }
+
+
+        return str;
+    }
+}
